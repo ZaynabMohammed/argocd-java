@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: java-deployment
+  labels:
+    app: java
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: java
+  template:
+    metadata:
+      labels:
+        app: java
+    spec:
+      imagePullSecrets:
+        - name: ecr-creds
+      containers:
+        - name: java
+          image: 48********.dkr.ecr.us-east-1.amazonaws.com/iti:v33
+          ports:
+            - containerPort: 8090
